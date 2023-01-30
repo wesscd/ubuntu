@@ -40,6 +40,7 @@ install_neofetch(){
 # Configure neofetch as motd
 neofetch_to_motd(){
     sudo bash -c "echo 'neofetch' >> /etc/motd"
+    sudo bash -c "echo 'neofetch' >> ~/.bashrc"
 }
 
 # Main function
