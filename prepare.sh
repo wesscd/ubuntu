@@ -86,9 +86,16 @@ instalar_htop() {
 # Configurar neofetch como motd
 neofetch_para_motd() {
     log "INFO" "Configurando o neofetch como MOTD..."
-    sudo bash -c "echo 'neofetch' >> /etc/motd"
-    sudo bash -c "echo 'neofetch' >> ~/.bashrc"
-    echo "echo -e 'Acesse o Webmin em: ${VERDE}http://localhost:10000${NC}'" >> ~/.bashrc
+
+    # Obter o endereço IP do equipamento
+    ip_address=$(hostname -I | awk '{print $1}')
+
+    # Adicionar a mensagem ao ~/.bashrc
+    echo "echo -e 'Acesse o Webmin em: ${VERDE}http://${ip_address}:10000${NC}'" >> ~/.bashrc
+
+    # Adicionar o comando neofetch ao ~/.bashrc
+    echo 'neofetch' >> /etc/motd
+    echo 'neofetch' >> ~/.bashrc
 }
 
 # Função principal
